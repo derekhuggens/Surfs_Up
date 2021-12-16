@@ -54,19 +54,109 @@ Finally, descriptive statistics were requested from the dataframes as seen in th
 
 ## Results
 
-**JUNE AND DECEMBER DESCRIPTIVE STATISTICS
+Three key differences in weather observations between June and December are:
+
+  * June's mean temperature is 5.35% higher on average compared to December's mean temperature
+  * There is no skew in the data as the mean temperatures sit with the 50% percentile or median.
+  * December's minimum temperature measures 8 degrees farenheit colder than June's minimum.
+
+**JUNE AND DECEMBER DESCRIPTIVE STATISTICS**
 
 ![This is an image](https://github.com/derekhuggens/Surfs_Up/blob/2b778317b71460ce57f4498f934cbcf46dc7dd05/Readme_Images/descriptive_stats.png)
 
-In this repository...
-
-Three key differences in weather between June and December are:
-
-  * June's mean temperature is 5.35% higher on average compared to December's mean temperature
-  * 
-  * 3
-
 ![This is an image](https://github.com/derekhuggens/Surfs_Up/blob/97e294dc6d8400f231de3b9a215c6ee54ea6b3c3/Readme_Images/temp_plots.png)
+
+**FLASK**
+
+Flask was used to present the Hawaii data within four different webpages. Within Flask, `@app.route("/")` was used as the welcome/home page to then create four different `@app.route()` paths that someone could click on to view various Hawaii database data.
+
+```python
+@app.route("/")
+
+def welcome():
+    return render_template('template.html')  
+
+@app.route("/api/v1.0/precipitation")
+def precipitation():
+    prev_year = dt.date(2017, 8, 23) - dt.timedelta(days=365)
+    precipitation = session.query(Measurement.date, Measurement.prcp).filter(Measurement.date >= prev_year).all()
+    precip = {date: prcp for date, prcp in precipitation}
+    return jsonify(precip)
+
+@app.route("/api/v1.0/stations")
+def stations():
+    # create query to get all the stations in the database
+    results = session.query(Station.station).all()
+    # unravel results into one-dimensional array using function np.ravel() with results as the parameter
+    # use list function list() to convert array into a list
+    stations = list(np.ravel(results))
+    # use jsonify to json the list
+    return jsonify(stations=stations)
+
+@app.route("/api/v1.0/tobs")
+def temp_monthly():
+    prev_year = dt.date(2017, 8, 23) - dt.timedelta(days=365)
+    # query databases' primary station for all the temp observations from previous year
+    results = session.query(Measurement.tobs).\
+      filter(Measurement.station == 'USC00519281').\
+      filter(Measurement.date >= prev_year).all()
+    # unravel results into one-dimensional array using function np.ravel() with results as the parameter
+    # use list function list() to convert array into a list
+    temps = list(np.ravel(results))
+    # use jsonify to json the list
+    return jsonify(temps=temps)
+
+@app.route("/api/v1.0/temp/<start>")
+@app.route("/api/v1.0/temp/<start>/<end>")
+def stats(start=None, end=None):
+    # create a list to store min, avg, max
+    sel = [func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)]
+    # create an if not conditional to determine starting and ending dates
+    if not end:
+        # the *sel indicates that there will be multiple results for the query
+        results = session.query(*sel).\
+            filter(Measurement.date >= start).all()
+        temps = list(np.ravel(results))
+        return jsonify(temps=temps)
+
+    # with dates at hand, this query will gather the statistics data on the data points
+    results = session.query(*sel).\
+        filter(Measurement.date >= start).\
+        filter(Measurement.date <= end).all()
+    temps = list(np.ravel(results))
+    return jsonify(temps=temps)
+```
+
+I was not happy with the original plain Python text used to create the landing page, so I imported `from flask import render_template` and created an HTML file titled `template.html` in a folder titled "templates" within the same directory as the Flask python file `app.py`. Below is the HTML code for the new landing page with the more interactive HTML links using `<a href="url">link text</a>`.
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Flask Template Example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <style type="text/css">
+      .container {
+        max-width: 500px;
+        padding-top: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <p>Welcome to the Hawaii Climate Analysis API!</p>
+      <p>Available Routes</p>
+      <p> <a href="http://127.0.0.1:5000/api/v1.0/precipitation">/api/v1.0/precipitation</a></p>
+      <p> <a href="http://127.0.0.1:5000/api/v1.0/stations">/api/v1.0/stations</a></p>
+      <p> <a href="http://127.0.0.1:5000/api/v1.0/tobs">/api/v1.0/tobs</a></p>
+      <p> <a href="http://127.0.0.1:5000/api/v1.0/temp/start/end">/api/v1.0/temp/start/end</a></p>
+    </div>
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  </body>
+</html>
+```
 
 **URL ROUTES**
 
@@ -82,4 +172,8 @@ Three key differences in weather between June and December are:
 
 ### 
 
-Summary of the results and two additional queries to perform to gather more weather data for June and December
+From a business perspective, in this case, opening an ice-cream/surfing store, it would be imperative to open up a store during times of an average or higher temperature with a lower than average amount of precipitation. 
+
+![This is an image](https://github.com/derekhuggens/Surfs_Up/blob/a535ab99a84fc843dc7c339635883640f57b7c3b/Readme_Images/prcp.png)
+
+
