@@ -25,7 +25,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func
 ```
 
-In short, an object known as `Engine` was declared to connect our SQLite database for querying as such: `engine = create_engine("sqlite:///hawaii.sqlite")`.  The SQLite file `hawaii.sqlite` database was automapped into a new model using `automap_base()` as `Base = automap_base()` and then the base class schema was reflected with mappings with `Base.prepare(engine, reflect=True)`. The classes that were mapped for our interest were saved in variables for reference: `Measurement = Base.classes.measurement' 'Station = Base.classes.station`. The measurement 
+In short, an object known as `Engine` was declared to connect our SQLite database for querying as such: `engine = create_engine("sqlite:///hawaii.sqlite")`.  The SQLite file `hawaii.sqlite` database was automapped into a new model using `automap_base()` as `Base = automap_base()` and then the base class schema was reflected with mappings with `Base.prepare(engine, reflect=True)`. The classes that were mapped for our interest were saved in variables for reference: `Measurement = Base.classes.measurement` `Station = Base.classes.station`. The measurement 
 
 ## Results
 
