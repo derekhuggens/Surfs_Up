@@ -3,7 +3,7 @@
 
 ## Overview of the Analysis
 ###
-In this repository, SQLite, SQLAlchemy, and Flask were studied and used for gathering and analyzing weather data to justify a business model.
+In this repository, SQLite, SQLAlchemy, and Flask were studied and used for gathering and analyzing weather data (in June and December months) to justify a business model.
 
 SQLite is a small, fast, relational database management system that can be stored locally for quick testing. SQLAlchemy is a query tool that can query SQLite databases. Flask is a web development framework that uses Python to build websites.
 
@@ -25,7 +25,32 @@ from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func
 ```
 
-In short, an object known as `Engine` was declared to connect our SQLite database for querying as such: `engine = create_engine("sqlite:///hawaii.sqlite")`.  The SQLite file `hawaii.sqlite` database was automapped into a new model using `automap_base()` as `Base = automap_base()` and then the base class schema was reflected with mappings with `Base.prepare(engine, reflect=True)`. The classes that were mapped for our interest were saved in variables for reference: `Measurement = Base.classes.measurement` `Station = Base.classes.station`. The measurement 
+In short, an object known as `Engine` was declared to connect our SQLite database for querying as such: `engine = create_engine("sqlite:///hawaii.sqlite")`.  The SQLite file `hawaii.sqlite` database was automapped into a new model using `automap_base()` as `Base = automap_base()` and then the base class schema was reflected with mappings with `Base.prepare(engine, reflect=True)`. The classes that were mapped for our interest were saved in variables with logically matching table names for reference: `Measurement = Base.classes.measurement` `Station = Base.classes.station`. Finally, `session = Session(engine)` creates the link from Python to the database. Below, our hawaii.sqlite database can be seen with two tables, measurement and station.
+
+![This is an image](https://github.com/derekhuggens/Surfs_Up/blob/6cb427b7faaf1d983a3a4aa0ed31716195bbaffa/Readme_Images/sqlite_file.png)
+
+
+In order to pull the requested weather data from the database the `sqlalchemy` module `extract` was imported: `from sqlalchemy import extract`.
+
+`session.query` and `.filter` were used as well as `.all()` to pull appropriate temperatures from June and December, respectively, from the Measurement table:
+
+`june_results = session.query(Measurement.tobs).filter(extract('month', Measurement.date)==6).all()`
+
+`dec_results = session.query(Measurement.tobs).filter(extract('month', Measurement.date)==12).all()`
+
+The resulting objects were converted to a list using `list()` and the numpy function `np.ravel`:
+
+`june_temps = list(np.ravel(june_results))`
+
+`dec_temps = list(np.ravel(dec_results))`
+
+To view the list in a table we converted the lists to DataFrames using `pd.Dataframe`:
+
+`june_df = pd.DataFrame(june_temps, columns=['June Temperatures'])`
+
+`dec_df = pd.DataFrame(dec_temps, columns=['December Temperatures'])`
+
+Finally, descriptive statistics were requested from the dataframes as seen in the Results section of this `README`.
 
 ## Results
 
