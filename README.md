@@ -12,7 +12,7 @@ SQLite files are cross-platform, flat files used widely as a reliable, durable s
 ![This is an image](https://github.com/derekhuggens/Surfs_Up/blob/65d83f91763b4bccd83673c978db17b6543001a5/Readme_Images/sqla_arch_small.png)
 [^1]: Reference: https://docs.sqlalchemy.org/en/14/intro.html
 
-Using the SQLAlchemy toolkit and Object Relational Mapper, we used Python to query a SQLite file containing weather station data in Hawaii. 
+Using the SQLAlchemy toolkit and Object Relational Mapper, we used Python to query a SQLite file containing weather station data in Hawaii. The following dependencies were used.
 
 ``` Jupyter Notebook
 # Dependencies
@@ -25,6 +25,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func
 ```
 
+In short, an object known as `Engine` was
 
 ## Results
 
