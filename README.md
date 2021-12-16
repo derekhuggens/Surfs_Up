@@ -54,7 +54,14 @@ Finally, descriptive statistics were requested from the dataframes as seen in th
 
 ## Results
 
-### 
+**JUNE  DESCRIPTIVE STATISTICS**
+
+![This is an image](https://github.com/derekhuggens/Surfs_Up/blob/f8f66c58d51ddbdbfc1d9cf1e06a1cdfbf185962/Readme_Images/June_Temperatures.png)
+
+**DECEMBER DESCRIPTIVE STATISTICS**
+
+![This is an image](https://github.com/derekhuggens/Surfs_Up/blob/f8f66c58d51ddbdbfc1d9cf1e06a1cdfbf185962/Readme_Images/December_Temperatures.png)
+
 
 In this repository...
 
@@ -64,15 +71,8 @@ Three key differences in weather between June and December are:
   * 2
   * 3
 
-JUNE  DESCRIPTIVE STATISTICS
 
-![This is an image](https://github.com/derekhuggens/Surfs_Up/blob/f8f66c58d51ddbdbfc1d9cf1e06a1cdfbf185962/Readme_Images/June_Temperatures.png)
-
-DECEMBER DESCRIPTIVE STATISTICS
-
-![This is an image](https://github.com/derekhuggens/Surfs_Up/blob/f8f66c58d51ddbdbfc1d9cf1e06a1cdfbf185962/Readme_Images/December_Temperatures.png)
-
-URL ROUTES
+**URL ROUTES**
 
 ![This is an image](https://github.com/derekhuggens/Surfs_Up/blob/f8f66c58d51ddbdbfc1d9cf1e06a1cdfbf185962/Readme_Images/precipitation_route.png)
 
