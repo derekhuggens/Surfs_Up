@@ -10,10 +10,20 @@ SQLite is a small, fast, relational database management system that can be store
 SQLite files are cross-platform, flat files used widely as a reliable, durable storage fornat. SQLAlchemy is built upon two APIs known as the Core and the ORM (Object Relational Mapper) that establish database connectivity and configurable layers for users to define Python classes, respectively.[^1]
 
 ![This is an image](https://github.com/derekhuggens/Surfs_Up/blob/65d83f91763b4bccd83673c978db17b6543001a5/Readme_Images/sqla_arch_small.png)
-[^1]: from https://docs.sqlalchemy.org/en/14/intro.html
+[^1]: Reference: https://docs.sqlalchemy.org/en/14/intro.html
 
-Using the SQLAlchemy toolkit and Object Relational Mapper, we used Python to query a SQLite file containing weather station data in Hawaii.
+Using the SQLAlchemy toolkit and Object Relational Mapper, we used Python to query a SQLite file containing weather station data in Hawaii. 
 
+``` Jupyter Notebook
+# Dependencies
+import numpy as np
+import pandas as pd
+# Python SQL toolkit and Object Relational Mapper
+import sqlalchemy
+from sqlalchemy.ext.automap import automap_base
+from sqlalchemy.orm import Session
+from sqlalchemy import create_engine, func
+```
 
 
 ## Results
