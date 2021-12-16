@@ -1,5 +1,5 @@
 # Surfs_Up
-### Advanced data storage with ==SQLite==, ==SQLAlchemy==, and ==Flask==
+### Advanced data storage with <mark>SQLite</mark>, SQLAlchemy, and Flask
 
 ## Overview of the Analysis
 ###
