@@ -44,7 +44,7 @@ The resulting objects were converted to a list using `list()` and the numpy func
 
 `dec_temps = list(np.ravel(dec_results))`
 
-To view the list in a table we converted the lists to DataFrames using `pd.Dataframe`:
+To view the lists in a table we converted the lists to DataFrames with new column names using `pd.Dataframe` and `columns=[]`:
 
 `june_df = pd.DataFrame(june_temps, columns=['June Temperatures'])`
 
