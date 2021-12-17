@@ -168,7 +168,7 @@ I was not happy with the original f-string Python text used to create the landin
 
 ![This is an image](https://github.com/derekhuggens/Surfs_Up/blob/f8f66c58d51ddbdbfc1d9cf1e06a1cdfbf185962/Readme_Images/min_avg_max_temp_measurements_route.png)
 
-## SUMMARY
+## Summary
 
 ### 
 
