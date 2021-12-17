@@ -58,7 +58,7 @@ Three key differences in weather observations between June and December are:
 
   * June's mean temperature is 5.35% higher on average compared to December's mean temperature
   * There is no skew in the data as the mean temperatures sit with the 50% percentile or median.
-  * December's minimum temperature measures 8 degrees farenheit colder than June's minimum.
+  * December's minimum temperature measures 8 degrees Fahrenheit colder than June's minimum.
 
 **JUNE AND DECEMBER DESCRIPTIVE STATISTICS**
 
@@ -127,7 +127,7 @@ def stats(start=None, end=None):
     return jsonify(temps=temps)
 ```
 
-I was not happy with the original plain Python text used to create the landing page, so I imported `from flask import render_template` and created an HTML file titled `template.html` in a folder titled "templates" within the same directory as the Flask python file `app.py`. Below is the HTML code for the new landing page with the more interactive HTML links using `<a href="url">link text</a>`.
+I was not happy with the original f-string Python text used to create the landing page, so I imported `from flask import render_template` and created an HTML file titled `template.html` in a folder titled "templates" within the same directory as the Flask python file `app.py`. Below is the HTML code for the new landing page with the more interactive HTML links using `<a href="url">link text</a>`.
 
 ```html
 <!DOCTYPE html>
@@ -172,8 +172,66 @@ I was not happy with the original plain Python text used to create the landing p
 
 ### 
 
-From a business perspective, in this case, opening an ice-cream/surfing store, it would be imperative to open up a store during times of an average or higher temperature with a lower than average amount of precipitation. 
+From a business perspective, in this case, opening an ice-cream/surfing store, it would be imperative to open up a store during times of an average or higher temperature with a lower than average amount of precipitation. The image below shows the precipitation in Hawaii for the past 12 months. I would 
 
 ![This is an image](https://github.com/derekhuggens/Surfs_Up/blob/a535ab99a84fc843dc7c339635883640f57b7c3b/Readme_Images/prcp.png)
 
+* Query 1
 
+Of the 1700 measurements taken in June by the weather stations (See "Count" from June descriptive statistics), 565 of the measurements were below the year round average temperature for all stations.
+
+Query for all temperature measurements: 
+`session.query(func.min(Measurement.tobs), func.max(Measurement.tobs), func.avg(Measurement.tobs)).all()`
+
+Output: `[(53.0, 87.0, 73.09795396419437)]`
+
+The year round average temperature is 73.1 degrees Fahrenheit.
+
+Query for  June temperature measurements and their dates that are below the year round average: 
+`june_below_avg_temps = session.query(Measurement.tobs, Measurement.date).filter(extract('month', Measurement.date)==6).filter(Measurement.tobs <= 73.10).all()`
+
+Turning this query into a DataFrame:
+`
+june_below_avg_temps_df = pd.DataFrame(june_below_avg_temps, columns=['temps','date'])
+june_below_avg_temps_df.set_index(june_below_avg_temps_df['date'], inplace=True)
+print(june_below_avg_temps_df.drop(['date'], axis=1))`
+
+A count of measurements: `june_below_avg_temps_df.count()`
+
+Output:
+
+`temps 565`
+
+`date 565`
+
+ This can be interpreted that 33.23% of all temperature observations in June are below the year round average temperature in Hawaii, and so 66.77% of all June temperature observations are above the year round average temperature in Hawaii. June is a good month temperature wise!
+ 
+ * Query 2
+
+Of the 1517 measurements taken in December by the weather stations (See "Count" from December descriptive statistics), 565 of the measurements were below the year round average temperature for all stations.
+
+Query for all temperature measurements: 
+`session.query(func.min(Measurement.tobs), func.max(Measurement.tobs), func.avg(Measurement.tobs)).all()`
+
+Output: `[(53.0, 87.0, 73.09795396419437)]`
+
+The year round average temperature is 73.1 degrees Fahrenheit.
+
+Query for  June temperature measurements and their dates that are below the year round average: 
+`dec_below_avg_temps = session.query(Measurement.tobs, Measurement.date).filter(extract('month', Measurement.date)==12).filter(Measurement.tobs <= 73.10).all()`
+
+Turning this query into a DataFrame:
+`
+dec_below_avg_temps_df = pd.DataFrame(dec_below_avg_temps, columns=['temps','date'])
+dec_below_avg_temps_df.set_index(dec_below_avg_temps_df['date'], inplace=True)
+print(dec_below_avg_temps_df.drop(['date'], axis=1))`
+
+A count of measurements: `dec_below_avg_temps_df.count()`
+
+Output:
+
+`temps 1118`
+
+`date 1118`
+
+This can be interpreted that 73.7% of all temperature observations in December are below the year round average temperature in Hawaii, and so only 26.3% of all December temperature observations are above the year round average temperature in Hawaii. December is not a good month temperature wise!
