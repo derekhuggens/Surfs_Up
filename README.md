@@ -176,6 +176,8 @@ From a business perspective, in this case, opening an ice-cream/surfing store, i
 
 ![This is an image](https://github.com/derekhuggens/Surfs_Up/blob/a535ab99a84fc843dc7c339635883640f57b7c3b/Readme_Images/prcp.png)
 
+## Additional Queries
+
 * Query 1
 
 Of the 1700 measurements taken in June by the weather stations (See "Count" from June descriptive statistics), 565 of the measurements were below the year round average temperature for all stations.
