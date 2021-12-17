@@ -64,8 +64,6 @@ Three key differences in weather observations between June and December are:
 
 ![This is an image](https://github.com/derekhuggens/Surfs_Up/blob/2b778317b71460ce57f4498f934cbcf46dc7dd05/Readme_Images/descriptive_stats.png)
 
-![This is an image](https://github.com/derekhuggens/Surfs_Up/blob/97e294dc6d8400f231de3b9a215c6ee54ea6b3c3/Readme_Images/temp_plots.png)
-
 ### **FLASK**
 
 Flask was used to present the Hawaii data within four different webpages. Within Flask, `@app.route("/")` was used as the welcome/home page to then create four different `@app.route()` paths that someone could click on to view various Hawaii database data.
@@ -172,7 +170,9 @@ I was not happy with the original f-string Python text used to create the landin
 
 ### 
 
-From a business perspective, in this case, opening an ice-cream/surfing store, it would be imperative to open up a store during times of an average or higher temperature with a lower than average amount of precipitation. The image below shows the precipitation in Hawaii for the past 12 months. I would 
+From a business perspective, in this case, opening an ice-cream/surfing store, it would be imperative to open up a store during times of an average or higher temperature with a lower than average amount of precipitation. The images below show the precipitation in Hawaii for the past 12 months and the frequencies of temperatures in June and December months. I would open the store in March or June when precipitation is at it's lowest. June is the best month as it has the best combination of less precipitation for surfing and  the optimum ice-cream temperatures.
+
+![This is an image](https://github.com/derekhuggens/Surfs_Up/blob/97e294dc6d8400f231de3b9a215c6ee54ea6b3c3/Readme_Images/temp_plots.png)
 
 ![This is an image](https://github.com/derekhuggens/Surfs_Up/blob/a535ab99a84fc843dc7c339635883640f57b7c3b/Readme_Images/prcp.png)
 
