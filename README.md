@@ -158,6 +158,8 @@ I was not happy with the original f-string Python text used to create the landin
 
 ### **URL ROUTES**
 
+Below are the four Flask routes to the different, relevant Hawaii measurements and stations. The last route, `/api/v1.0/temp/<start>/<end>` must have the `<start>` and `<end>` sections filled out with the YYYY-MM-DD format to get desired data.
+
 ![This is an image](https://github.com/derekhuggens/Surfs_Up/blob/f8f66c58d51ddbdbfc1d9cf1e06a1cdfbf185962/Readme_Images/precipitation_route.png)
 
 ![This is an image](https://github.com/derekhuggens/Surfs_Up/blob/f8f66c58d51ddbdbfc1d9cf1e06a1cdfbf185962/Readme_Images/stations_route.png)
