@@ -1,5 +1,5 @@
 # Surfs_Up
-### Advanced data storage with SQLite, SQLAlchemy, and Flask
+Advanced data storage with SQLite, SQLAlchemy, and Flask
 
 ## Overview of the Analysis
 ###
@@ -60,13 +60,13 @@ Three key differences in weather observations between June and December are:
   * There is no skew in the data as the mean temperatures sit with the 50% percentile or median.
   * December's minimum temperature measures 8 degrees Fahrenheit colder than June's minimum.
 
-**JUNE AND DECEMBER DESCRIPTIVE STATISTICS**
+### **JUNE AND DECEMBER DESCRIPTIVE STATISTICS**
 
 ![This is an image](https://github.com/derekhuggens/Surfs_Up/blob/2b778317b71460ce57f4498f934cbcf46dc7dd05/Readme_Images/descriptive_stats.png)
 
 ![This is an image](https://github.com/derekhuggens/Surfs_Up/blob/97e294dc6d8400f231de3b9a215c6ee54ea6b3c3/Readme_Images/temp_plots.png)
 
-**FLASK**
+### **FLASK**
 
 Flask was used to present the Hawaii data within four different webpages. Within Flask, `@app.route("/")` was used as the welcome/home page to then create four different `@app.route()` paths that someone could click on to view various Hawaii database data.
 
@@ -158,7 +158,7 @@ I was not happy with the original f-string Python text used to create the landin
 </html>
 ```
 
-**URL ROUTES**
+### **URL ROUTES**
 
 ![This is an image](https://github.com/derekhuggens/Surfs_Up/blob/f8f66c58d51ddbdbfc1d9cf1e06a1cdfbf185962/Readme_Images/precipitation_route.png)
 
@@ -178,7 +178,7 @@ From a business perspective, in this case, opening an ice-cream/surfing store, i
 
 ## Additional Queries
 
-* Query 1
+### * Query 1
 
 Of the 1700 measurements taken in June by the weather stations (See "Count" from June descriptive statistics), 565 of the measurements were below the year round average temperature for all stations.
 
@@ -208,7 +208,7 @@ Output:
 
  This can be interpreted that 33.23% of all temperature observations in June are below the year round average temperature in Hawaii, and so 66.77% of all June temperature observations are above the year round average temperature in Hawaii. June is a good month temperature wise!
  
- * Query 2
+ ### * Query 2
 
 Of the 1517 measurements taken in December by the weather stations (See "Count" from December descriptive statistics), 565 of the measurements were below the year round average temperature for all stations.
 
